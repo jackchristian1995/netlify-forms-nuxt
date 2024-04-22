@@ -26,7 +26,7 @@
     <fieldset>
       <label v-for="framework of frameworks" :key="framework" :for="framework">
         <p>{{ framework }}</p>
-        <input type="radio" name="framework" :id="framework" required />
+        <input type="radio" name="framework" :id="framework" :value="framework" required />
       </label>
     </fieldset>
     <button type="submit">
