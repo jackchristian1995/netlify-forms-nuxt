@@ -1,7 +1,16 @@
 <template>
   <div class="full-width full-height flex column h-center">
-    <h1>Vote For Your Fravourite JavaScript Framework</h1>
-    <simple-netlify-form />
+    <ul>
+      <li>
+        <nuxt-link to="/simple-netlify-form">Simple Netlify Form</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/ajax-netlify-form">AJAX Netlify Form</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/conditional-rendering-netlify-form">Conditional Rendering Netlify Form</nuxt-link>
+      </li>
+    </ul>
   </div>
 </template>
 

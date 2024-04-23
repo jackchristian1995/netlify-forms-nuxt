@@ -5,7 +5,10 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [
-        '/'
+        '/',
+        '/simple-netlify-form',
+        '/ajax-netlify-form',
+        '/conditional-rendering-netlify-form'
       ]
     }
   },
