@@ -12,7 +12,7 @@
     <fieldset v-show="formEntries.position && formEntries.position === 'Standing Up'">
       <label for="percent">
         <p>As a percentage, how much of the time do you remember to put down the toilet seat?</p>
-        <input type="number" name="percent" id="percent" v-model="formEntries.percent" required />
+        <input type="number" name="percent" id="percent" v-model="formEntries.percent" max="100" required />
       </label>
     </fieldset>
     <button type="submit">
