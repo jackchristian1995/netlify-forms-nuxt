@@ -22,7 +22,7 @@
       </label>
     </fieldset>
     <fieldset>
-      <label v-for="framework of frameworks" :key="framework" :for="framework">
+      <label v-for="framework of frameworks" :key="framework" for="framework">
         <p>{{ framework }}</p>
         <input type="radio" name="framework" :id="framework" :value="framework" @change="setVote" required />
       </label>
@@ -69,7 +69,9 @@ const encode = (data) => {
 
 const handleSubmit = (e) => {
   const formData = {
-    ...formEntries,
+    occupation: formEntries.role,
+    framework: formEntries.vote,
+    name: formEntries.name,
     'form-name': 'framework-votes-ajax'
   }
 
