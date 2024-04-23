@@ -70,7 +70,7 @@ const encode = (data) => {
 const handleSubmit = (e) => {
   const formData = {
     ...formEntries,
-    'form-name': formRef.value.name
+    'form-name': 'framework-votes-ajax'
   }
 
   fetch('/', {
