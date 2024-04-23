@@ -1,37 +1,24 @@
 <template>
   <form 
     action="/" method="post" enctype="application/x-www-form-urlencoded" 
-    data-netlify="true" name="framework-votes">
-    <input type="hidden" name="form-name" value="framework-votes">
+    data-netlify="true" name="toilet-votes">
+    <input type="hidden" name="form-name" value="toilet-votes">
     <fieldset>
-      <label for="name">
-        <p>
-          Your Name:
-        </p>
-        <input type="text" name="name" id="name" required />
-      </label>
-      <label for="name">
-        <p>
-          Your Role:
-        </p>
-        <select name="occupation" id="occupation" required>
-          <option disabled selected>Select...</option>
-          <option value="front-end-developer">Front-end Developer</option>
-          <option value="full-stack-developer">Full-stack Developer</option>
-          <option value="web-designer">Web Designer</option>
-          <option value="project-manager">Project Manager</option>
-        </select>
+      <label v-for="position of positions" :key="position" :for="position">
+        <p>{{ position }}</p>
+        <input type="radio" name="position" :id="position" :value="position" @change="setPosition" required />
       </label>
     </fieldset>
-    <fieldset>
-      <label v-for="framework of frameworks" :key="framework" :for="framework">
-        <p>{{ framework }}</p>
-        <input type="radio" name="framework" :id="framework" :value="framework" required />
+    <fieldset v-show="formEntries.position && formEntries.position === 'Standing Up'">
+      <label for="percent">
+        <p>As a percentage, how much of the time do you remember to put down the toilet seat?</p>
+        <input type="number" name="percent" id="percent" v-model="formEntries.percent" required />
       </label>
     </fieldset>
     <button type="submit">
       Submit
     </button>
+    <p class="response-message" v-if="formResponse">{{ formResponse }}</p>
   </form>
 </template>
 
@@ -40,14 +27,45 @@
 import { ref } from 'vue';
 
 // Framework Options
-const frameworks = ref([
-  'React',
-  'VueJS',
-  'Angular',
-  'Svelte',
-  'Ember',
-  'Electron'
+const positions = ref([
+  'Standing Up',
+  'Sitting Down'
 ]);
+
+// Form Entries and Data
+const formEntries = reactive({
+  position: null,
+  percent: 0
+});
+
+const setPosition = (e) => formEntries.position = e.target.value;
+
+// Form Submission
+const formRef = ref(null);
+const formResponse = ref(null);
+
+const encode = (data) => {
+  return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+}
+
+const handleSubmit = (e) => {
+  const { position, percent } = formEntries;
+  const formData = {
+    position,
+    percent,
+    'form-name': 'toilet-votes'
+  }
+
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: encode(formData)
+  })
+    .then(() => formResponse.value = 'Thank you for sharing.')
+    .catch((e) => formResponse.value = e.message);
+}
 </script>
 
 <style scoped>
@@ -78,5 +96,9 @@ fieldset:last-of-type > label > p {
 
 button {
   margin: 0 auto;
+}
+
+.response-message {
+  padding: var(--padding-inner-base) 0;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="full-width full-height flex column h-center">
-    <h1>Vote For Your Fravourite JavaScript Framework</h1>
+    <h1>Do you pee standing up or sitting down?</h1>
     <conditional-rendering-netlify-form />
   </div>
 </template>
