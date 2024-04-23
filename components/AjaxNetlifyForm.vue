@@ -6,14 +6,14 @@
         <p>
           Your Name:
         </p>
-        <input type="text" name="name" id="name" required />
+        <input type="text" name="name" id="name" v-model="formEntries.name" required />
       </label>
       <label for="name">
         <p>
           Your Role:
         </p>
-        <select name="occupation" id="occupation" required>
-          <option disabled selected>Select...</option>
+        <select name="occupation" id="occupation" v-model="formEntries.role" required>
+          <option disabled value="default">Select...</option>
           <option value="front-end-developer">Front-end Developer</option>
           <option value="full-stack-developer">Full-stack Developer</option>
           <option value="web-designer">Web Designer</option>
@@ -24,7 +24,7 @@
     <fieldset>
       <label v-for="framework of frameworks" :key="framework" :for="framework">
         <p>{{ framework }}</p>
-        <input type="radio" name="framework" :id="framework" :value="framework" required />
+        <input type="radio" name="framework" :id="framework" :value="framework" @change="setVote" required />
       </label>
     </fieldset>
     <button type="submit">
@@ -36,7 +36,7 @@
 
 <script setup>
 // Module Imports
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
 // Framework Options
 const frameworks = ref([
@@ -48,17 +48,35 @@ const frameworks = ref([
   'Electron'
 ]);
 
+// Form Entries and Data
+const formEntries = reactive({
+  name: null,
+  role: 'default',
+  vote: null
+});
+
+const setVote = (e) => formEntries.vote = e.target.value;
+
 // Form Submission
 const formRef = ref(null);
 const formResponse = ref(null);
 
+const encode = (data) => {
+  return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+}
+
 const handleSubmit = (e) => {
-  const formData = new FormData(formRef.value);
+  const formData = {
+    ...formEntries,
+    'form-name': formRef.value.name
+  }
 
   fetch('/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(formData).toString()
+    body: encode(formData)
   })
     .then(() => formResponse.value = 'Thank you for your vote.')
     .catch((e) => formResponse.value = e.message);
