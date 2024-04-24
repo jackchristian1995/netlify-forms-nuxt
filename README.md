@@ -1,75 +1,42 @@
-# Nuxt 3 Minimal Starter
+# Netlify Forms Integration with Nuxt3
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This Nuxt project contains three examples of different implementations of Netlify Forms within a Nuxt app. The three examples are separated out into three separate components. Feel free to use and adapt the component code to your needs.
 
-## Setup
+For more information about the implementations, [read this blog post](https://jackchristian.uk/blog/how-to-get-netlify-forms-working-in-nuxt-3) explaining each one.
 
-Make sure to install the dependencies:
+1. Simple Netlify Form - The most basic implementation of Netlify Forms
+2. AJAX Netlify Form - Submitting form data using fetch API
+3. Conditional Rendering Netlify Form - Using conditionally rendered form elements with Netlify Forms
+
+## Installation
+
+Download the repository and run from the root directory.
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Usage
 
-Start the development server on `http://localhost:3000`:
+Navigate to the root directory in a terminal and run.
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Deployment with Netlify
 
-Build the application for production:
+Follow guidelines set forth about [deploying Nuxt apps in Netlify documentation](https://docs.netlify.com/frameworks/nuxt/#deploy-a-nuxt-site-on-netlify).
 
-```bash
-# npm
-npm run build
+To enable Netlify Form detection, follow guidelines set out in [Netlify Forms documentation](https://docs.netlify.com/forms/setup/).
 
-# pnpm
-pnpm run build
+## Contributing
 
-# yarn
-yarn build
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
 
-# bun
-bun run build
-```
+Please make sure to update tests as appropriate.
 
-Locally preview production build:
+## License
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+[MIT](https://choosealicense.com/licenses/mit/)
