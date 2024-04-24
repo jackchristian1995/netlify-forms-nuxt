@@ -1,6 +1,6 @@
 <template>
   <form data-netlify="true" name="toilet-votes">
-    <input type="hidden" name="form-name" value="toilet-votes">
+    <input type="hidden" name="form-name" value="toilet-votes" @submit.prevent="handleSubmit">
     <fieldset>
       <label v-for="position of positions" :key="position" :for="position">
         <p>{{ position }}</p>
