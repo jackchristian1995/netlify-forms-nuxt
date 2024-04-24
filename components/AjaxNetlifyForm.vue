@@ -75,7 +75,7 @@ const handleSubmit = (e) => {
     'form-name': 'framework-votes-ajax'
   }
 
-  fetch('/', {
+  fetch('/ajax-netlify-form', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: encode(formData)

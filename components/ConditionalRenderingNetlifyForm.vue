@@ -1,7 +1,5 @@
 <template>
-  <form 
-    action="/" method="post" enctype="application/x-www-form-urlencoded" 
-    data-netlify="true" name="toilet-votes">
+  <form data-netlify="true" name="toilet-votes">
     <input type="hidden" name="form-name" value="toilet-votes">
     <fieldset>
       <label v-for="position of positions" :key="position" :for="position">
@@ -58,7 +56,7 @@ const handleSubmit = (e) => {
     'form-name': 'toilet-votes'
   }
 
-  fetch('/', {
+  fetch('/conditional-rendering-netlify-form', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: encode(formData)

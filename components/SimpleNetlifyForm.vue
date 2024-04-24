@@ -1,6 +1,6 @@
 <template>
   <form 
-    action="/" method="post" enctype="application/x-www-form-urlencoded" 
+    action="/simple-netlify-form" method="post" enctype="application/x-www-form-urlencoded" 
     data-netlify="true" name="framework-votes">
     <input type="hidden" name="form-name" value="framework-votes">
     <fieldset>
